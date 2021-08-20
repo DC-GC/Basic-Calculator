@@ -15,7 +15,7 @@ def clear():
 def addition():
     global first_input
     global action
-    first_input = int(input2.get() or 0)
+    first_input = float(input2.get() or 0)
     action = "addition"
     input2.delete(0, END)
     
@@ -24,35 +24,35 @@ def addition():
 def subtraction():
     global first_input
     global action
-    first_input = int(input2.get() or 0)
+    first_input = float(input2.get() or 0)
     action = "subtraction"
     input2.delete(0, END)
 
 def multiplication():
     global first_input
     global action
-    first_input = int(input2.get() or 0)
+    first_input = float(input2.get() or 0)
     action = "multiplication"
     input2.delete(0, END)
 
 def division():
     global first_input
     global action
-    first_input = int(input2.get() or 0)
+    first_input = float(input2.get() or 0)
     action = "division"
     input2.delete(0, END)
 
 def to_the_power():
     global first_input
     global action
-    first_input = int(input2.get() or 0)
+    first_input = float(input2.get() or 0)
     action = "exponent"
     input2.delete(0, END)   
 
 def perform_action():
     global action
     global second_input
-    second_input = int(input2.get() or 0)
+    second_input = float(input2.get() or 0)
     input2.delete(0, END)
     if action == "addition":
         input2.insert(0,first_input + second_input)
