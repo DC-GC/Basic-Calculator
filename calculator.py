@@ -87,6 +87,10 @@ def insert_nine():
 def insert_zero():
     input2.insert(END,0)
 
+def insert_period():
+    input2.insert(END,".")
+
+
     
     
 
@@ -102,7 +106,7 @@ window.config(background="black")
 
 
 input2 = Entry(window, 
-            font=("Comic Sans", 15), justify=RIGHT, state="disabled")
+            font=("Comic Sans", 15), justify=RIGHT)
 input2.grid(row=0, column=0, columnspan=5)
 
 
@@ -262,5 +266,23 @@ zero= Button(window,
                 fg="white",
                 bg="gray",
                 activebackground="gray",
-                activeforeground="white").grid(row=4, column=2,sticky='nesw', columnspan=3)
+                activeforeground="white").grid(row=4, column=3,sticky='nesw')
+
+period = Button(window, 
+                text = ".", 
+                command=insert_period, 
+                font=("Comic Sans", 12), 
+                fg="white",
+                bg="gray",
+                activebackground="gray",
+                activeforeground="white").grid(row=4, column=4,sticky='nesw')
+
+power = Button(window, 
+                text = "^", 
+                command=insert_period, 
+                font=("Comic Sans", 12), 
+                fg="white",
+                bg="gray",
+                activebackground="gray",
+                activeforeground="white").grid(row=4, column=2,sticky='nesw')
 window.mainloop()
