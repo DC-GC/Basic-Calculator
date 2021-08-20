@@ -42,6 +42,13 @@ def division():
     action = "division"
     input2.delete(0, END)
 
+def to_the_power():
+    global first_input
+    global action
+    first_input = int(input2.get() or 0)
+    action = "exponent"
+    input2.delete(0, END)   
+
 def perform_action():
     global action
     global second_input
@@ -55,6 +62,8 @@ def perform_action():
         input2.insert(0,first_input * second_input)
     elif action == "division":
         input2.insert(0,first_input / second_input)
+    elif action == "exponent":
+        input2.insert(0,first_input ** second_input)
 
 
 def insert_one():
@@ -277,9 +286,9 @@ period = Button(window,
                 activebackground="gray",
                 activeforeground="white").grid(row=4, column=4,sticky='nesw')
 
-power = Button(window, 
+exponent = Button(window, 
                 text = "^", 
-                command=insert_period, 
+                command=to_the_power, 
                 font=("Comic Sans", 12), 
                 fg="white",
                 bg="gray",
