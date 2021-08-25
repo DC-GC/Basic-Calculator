@@ -1,295 +1,147 @@
 from tkinter import *
-
-
 first_input = 0
-second_input = 0
 action = "none"
-
+window = Tk()
 
 def backspace():
-    input2.delete(len(input2.get())-1, END)
-
+    entry.delete()
 def clear():
-    input2.delete(0,END)
-
+    entry.remove_all()
 def addition():
     global first_input
     global action
-    first_input = float(input2.get() or 0)
+    first_input = float(entry.get_value() or 0)
     action = "addition"
-    input2.delete(0, END)
-    
+    entry.remove_all()
+
 def subtraction():
     global first_input
     global action
-    first_input = float(input2.get() or 0)
+    first_input = float(entry.get_value() or 0)
     action = "subtraction"
-    input2.delete(0, END)
+    entry.remove_all()
 
 def multiplication():
     global first_input
     global action
-    first_input = float(input2.get() or 0)
+    first_input = float(entry.get_value() or 0)
     action = "multiplication"
-    input2.delete(0, END)
+    entry.remove_all()
 
 def division():
     global first_input
     global action
-    first_input = float(input2.get() or 0)
+    first_input = float(entry.get_value() or 0)
     action = "division"
-    input2.delete(0, END)
+    entry.remove_all()
+
+
+def perform_action():
+    global action
+    global first_input
+    second_input = float(entry.get_value() or 0)
+    const = 0
+    entry.remove_all()
+    if action == "addition":
+        entry.change_value(first_input+second_input)
+        action = "none"
+    elif action == "subtraction":
+        entry.change_value(first_input-second_input)
+        action = "none"
+    elif action == "multiplication":
+        entry.change_value(first_input*second_input)
+        action = "none"
+    elif action == "division":
+        entry.change_value(first_input/second_input)
+        action = "none"
+    elif action == "exponent":
+        entry.change_value(first_input**second_input)
+        action = "none"
 
 def to_the_power():
     global first_input
     global action
-    first_input = float(input2.get() or 0)
+    first_input = float(entry.get_value() or 0)
     action = "exponent"
-    input2.delete(0, END)   
-
-def perform_action():
-    global action
-    global second_input
-    second_input = float(input2.get() or 0)
-    input2.delete(0, END)
-    if action == "addition":
-        input2.insert(0,first_input + second_input)
-    elif action == "subtraction":
-        input2.insert(0,first_input - second_input)
-    elif action == "multiplication":
-        input2.insert(0,first_input * second_input)
-    elif action == "division":
-        input2.insert(0,first_input / second_input)
-    elif action == "exponent":
-        input2.insert(0,first_input ** second_input)
-
+    entry.remove_all()  
 
 def insert_one():
-    input2.insert(END,1)
-
+    entry.change_value(1)
 def insert_two():
-    input2.insert(END,2)
-
+    entry.change_value(2)
 def insert_three():
-    input2.insert(END,3)
-
+    entry.change_value(3)
 def insert_four():
-    input2.insert(END,4)
-
+    entry.change_value(4)
 def insert_five():
-    input2.insert(END,5)
-
+    entry.change_value(5)
 def insert_six():
-    input2.insert(END,6)
-
+    entry.change_value(6)
 def insert_seven():
-    input2.insert(END,7)
-
+    entry.change_value(7)
 def insert_eight():
-    input2.insert(END,8)
-
+    entry.change_value(8)
 def insert_nine():
-    input2.insert(END,9)
-
+    entry.change_value(9)
 def insert_zero():
-    input2.insert(END,0)
-
-def insert_period():
-    input2.insert(END,".")
+    entry.change_value(0)
 
 
     
+
+class button:
+    def __init__(self, text, row, column,columnspan, function):
+        self.main =  Button(window, 
+                text = text,
+                command=function,  
+                font=("Comic Sans", 12), 
+                fg="white",
+                bg="black",
+                activebackground="black",
+                activeforeground="white").grid(row=row, column=column, columnspan=columnspan,sticky='nesw')
+
+
+class entrybox:
+    def __init__(self, row, column, columnspan):
+        self.main = Entry(window, 
+                        font=("Comic Sans", 15), justify=RIGHT)
+        self.main.grid(row=row, column=column, columnspan=columnspan)
+    def get_value(self):
+        return self.main.get()
+    def change_value(self,value):
+        self.main.insert(END,value)
+    def delete(self):
+        self.main.delete(len(self.main.get())-1, END)
+    def remove_all(self):
+        self.main.delete(0,END)
     
 
-    
-    
-
-# addition(input("enter a number: ") or 0, input("enter another number: ") or 0)
-window = Tk()
-# window.geometry("500x500")
-window.title("Calculator")
-window.config(background="black")
 
 
-
-input2 = Entry(window, 
-            font=("Comic Sans", 15), justify=RIGHT)
-input2.grid(row=0, column=0, columnspan=5)
-
-
-# input1 = Entry(window, 
-#             font=("Comic Sans", 10))
-# input1.grid(row=0, column=1)
-
-bk = Button(window, 
-                text = "BK", 
-                command=backspace, 
-                font=("Comic Sans", 12), 
-                fg="white",
-                bg="black",
-                activebackground="black",
-                activeforeground="white").grid(row=1, column=0, sticky='nesw')
-
-ce = Button(window, 
-                text = "CE", 
-                command=clear, 
-                font=("Comic Sans", 12), 
-                fg="white",
-                bg="black",
-                activebackground="black",
-                activeforeground="white").grid(row=1, column=1, sticky='nesw')
-
-plus = Button(window, 
-                text = "+", 
-                command=addition, 
-                font=("Comic Sans", 12), 
-                fg="white",
-                bg="black",
-                activebackground="black",
-                activeforeground="white").grid(row=2, column=0, sticky='nesw')
-
-
-minus = Button(window, 
-                text = "-", 
-                command=subtraction, 
-                font=("Comic Sans", 12), 
-                fg="white",
-                bg="black",
-                activebackground="black",
-                activeforeground="white").grid(row=2, column=1,sticky='nesw')
-
-times = Button(window, 
-                text = "x", 
-                command=multiplication, 
-                font=("Comic Sans", 12), 
-                fg="white",
-                bg="black",
-                activebackground="black",
-                activeforeground="white").grid(row=3,column=0,sticky='nesw')
-
-divide = Button(window, 
-                text = "÷", 
-                command=division, 
-                font=("Comic Sans", 12), 
-                fg="white",
-                bg="black",
-                activebackground="black",
-                activeforeground="white").grid(row=3, column=1,sticky='nesw')
-
-equal = Button(window, 
-                text = "=", 
-                command=perform_action, 
-                font=("Comic Sans", 12), 
-                fg="white",
-                bg="black",
-                activebackground="black",
-                activeforeground="white").grid(row=4, column=0,columnspan=2 ,sticky='nesw')
-
-one = Button(window, 
-                text = "1", 
-                command=insert_one, 
-                font=("Comic Sans", 12), 
-                fg="white",
-                bg="gray",
-                activebackground="gray",
-                activeforeground="white").grid(row=1, column=2,sticky='nesw')
-
-two = Button(window, 
-                text = "2", 
-                command=insert_two, 
-                font=("Comic Sans", 12), 
-                fg="white",
-                bg="gray",
-                activebackground="gray",
-                activeforeground="white").grid(row=1, column=3,sticky='nesw')
-
-three = Button(window, 
-                text = "3", 
-                command=insert_three, 
-                font=("Comic Sans", 12), 
-                fg="white",
-                bg="gray",
-                activebackground="gray",
-                activeforeground="white").grid(row=1, column=4,sticky='nesw')
-            
-four = Button(window, 
-                text = "4", 
-                command=insert_four, 
-                font=("Comic Sans", 12), 
-                fg="white",
-                bg="gray",
-                activebackground="gray",
-                activeforeground="white").grid(row=2, column=2,sticky='nesw')
-
-five = Button(window, 
-                text = "5", 
-                command=insert_five, 
-                font=("Comic Sans", 12), 
-                fg="white",
-                bg="gray",
-                activebackground="gray",
-                activeforeground="white").grid(row=2, column=3,sticky='nesw')
-
-six = Button(window, 
-                text = "6", 
-                command=insert_six, 
-                font=("Comic Sans", 12), 
-                fg="white",
-                bg="gray",
-                activebackground="gray",
-                activeforeground="white").grid(row=2, column=4,sticky='nesw')
-
-seven = Button(window, 
-                text = "7", 
-                command=insert_seven, 
-                font=("Comic Sans", 12), 
-                fg="white",
-                bg="gray",
-                activebackground="gray",
-                activeforeground="white").grid(row=3, column=2,sticky='nesw')
         
-eight = Button(window, 
-                text = "8", 
-                command=insert_eight, 
-                font=("Comic Sans", 12), 
-                fg="white",
-                bg="gray",
-                activebackground="gray",
-                activeforeground="white").grid(row=3, column=3,sticky='nesw')
+bk = button("BK", 1,0,1,backspace)
+ce = button("CE", 1,1,1,clear)
+add = button("+", 2,0,1,addition)
+sub = button("-", 2,1,1,subtraction)
+mul = button("x", 3,0,1,multiplication)
+div = button("÷", 3,1,1,division)
+equal = button("=", 4,0,2,perform_action)
+one = button("1", 1,2,1,insert_one)
+two = button("2", 1,3,1,insert_two)
+three = button("3", 1,4,1,insert_three)
+four = button("4", 2,2,1,insert_four)
+five = button("5", 2,3,1,insert_five)
+six = button("6", 2,4,1,insert_six)
+seven = button("7", 3,2,1,insert_seven)
+eight = button("8", 3,3,1,insert_eight)
+nine = button("9", 3,4,1,insert_nine)
+zero = button("0", 4,3,1,insert_zero)
 
-nine = Button(window, 
-                text = "9", 
-                command=insert_nine, 
-                font=("Comic Sans", 12), 
-                fg="white",
-                bg="gray",
-                activebackground="gray",
-                activeforeground="white").grid(row=3, column=4,sticky='nesw')
 
-zero= Button(window, 
-                text = "0", 
-                command=insert_zero, 
-                font=("Comic Sans", 12), 
-                fg="white",
-                bg="gray",
-                activebackground="gray",
-                activeforeground="white").grid(row=4, column=3,sticky='nesw')
 
-period = Button(window, 
-                text = ".", 
-                command=insert_period, 
-                font=("Comic Sans", 12), 
-                fg="white",
-                bg="gray",
-                activebackground="gray",
-                activeforeground="white").grid(row=4, column=4,sticky='nesw')
+entry = entrybox(0,0,5)
 
-exponent = Button(window, 
-                text = "^", 
-                command=to_the_power, 
-                font=("Comic Sans", 12), 
-                fg="white",
-                bg="gray",
-                activebackground="gray",
-                activeforeground="white").grid(row=4, column=2,sticky='nesw')
+
+
+
 window.mainloop()
