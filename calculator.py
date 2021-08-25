@@ -19,8 +19,6 @@ def addition():
     action = "addition"
     input2.delete(0, END)
     
-    
-    
 def subtraction():
     global first_input
     global action
