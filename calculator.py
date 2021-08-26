@@ -85,6 +85,8 @@ def insert_nine():
     entry.change_value(9)
 def insert_zero():
     entry.change_value(0)
+def insert_period():
+    entry.change_value(".")
 
 
     
@@ -135,7 +137,9 @@ six = button("6", 2,4,1,insert_six)
 seven = button("7", 3,2,1,insert_seven)
 eight = button("8", 3,3,1,insert_eight)
 nine = button("9", 3,4,1,insert_nine)
+exponent = button("^", 4,2,1,to_the_power)
 zero = button("0", 4,3,1,insert_zero)
+period = button(".", 4,4,1,insert_period)
 
 
 
